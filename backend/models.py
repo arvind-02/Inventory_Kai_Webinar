@@ -1,10 +1,19 @@
 from sqlalchemy import Column, Integer, String, DateTime, Float, Boolean, ForeignKey, BigInteger, Text, LargeBinary
 from sqlalchemy.orm import relationship, remote, foreign
+from sqlalchemy_singlestoredb import VECTOR
+from sqlalchemy.types import TypeEngine
+
+
 
 
 
 from sqlalchemy.sql import func
 from database import Base
+
+
+
+
+
 
 class User(Base):
     __tablename__ = "users"
@@ -26,7 +35,7 @@ class Product(Base):
     price = Column(Float)
     quantity = Column(Integer)
     image_path = Column(String(255))
-    description_embedding = Column(LargeBinary)
+    
     orders = relationship("Order", 
                           back_populates="product",
                           primaryjoin="Product.id == foreign(Order.product_id)")
@@ -45,3 +54,5 @@ class Order(Base):
     user = relationship("User", 
                         back_populates="orders",
                         primaryjoin="foreign(Order.user_id) == User.id")
+    
+

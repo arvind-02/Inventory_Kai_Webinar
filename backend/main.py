@@ -3,10 +3,11 @@ from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy import desc
 from sqlalchemy.orm import Session
 from sqlalchemy.exc import SQLAlchemyError
-from database import get_db
+from database import get_db, get_engine
 import schemas
-from typing import List
 import crud
+from typing import List, Tuple
+from models import Product
 
 app = FastAPI()
 
@@ -30,7 +31,7 @@ purchases = [
 ]
 
 @app.get("/orders", response_model=List[schemas.Order])
-def get_orders(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
+def get_orders(skip: int = 0, limit: int = 100, db: Session = Depends(get_db), conn = Depends(get_engine)):
     try:
         orders = crud.get_orders(db, skip=skip, limit=limit)
         return orders
@@ -40,6 +41,18 @@ def get_orders(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
         db.rollback()
         raise HTTPException(status_code=500, detail="Database error occurred")
     
+@app.get("/recommended/{product_id}", response_model=schemas.RecommendedProduct)
+def get_recommended(product_id: int, limit: int = 1, conn = Depends(get_engine)):
+    try:
+        result = crud.get_recommended_product(product_id, conn)
+        
+        return schemas.RecommendedProduct(id=result[0], product_name=result[1],
+                                          product_description=result[2], image_path=result[3], 
+                                          similarity_score=result[4])
+
+    except SQLAlchemyError as e:
+        print(e)
+        raise HTTPException(status_code=500, detail="Database error occurred")
 
 if __name__ == "__main__":
     import uvicorn

@@ -25,7 +25,7 @@ class Product(BaseModel):
     product_name: str
     quantity: int
     image_path:str
-    
+    product_description: str
 
 
     class Config:
@@ -40,3 +40,13 @@ class Order(BaseModel):
     product: Product
     class Config:
         orm_mode = True
+
+class RecommendedProduct(BaseModel):
+    id: int
+    product_name: str
+    product_description: str
+    image_path: str
+    similarity_score: float
+
+    class Config:
+        from_attributes = True

@@ -1,10 +1,17 @@
-from database import engine
-from models import Base
+from database import engine, Base
+from models import User, Product, Order
+from sqlalchemy.engine import Connection
+from sqlalchemy import text
 
-def create_tables():
+def create_tables(connection: Connection):
     Base.metadata.drop_all(bind=engine)
     Base.metadata.create_all(bind=engine)
-
+    sql_emb = text("ALTER TABLE products ADD COLUMN description_embedding VECTOR(1536)")
+    connection.execute(sql_emb)
+    connection.commit()
+    
 if __name__ == "__main__":
-    create_tables()
+    with engine.connect() as connection:
+        create_tables(connection)
+
     print("Tables created successfully.")
