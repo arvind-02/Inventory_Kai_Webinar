@@ -2,18 +2,8 @@ from sqlalchemy import Column, Integer, String, DateTime, Float, Boolean, Foreig
 from sqlalchemy.orm import relationship, remote, foreign
 from sqlalchemy_singlestoredb import VECTOR
 from sqlalchemy.types import TypeEngine
-
-
-
-
-
 from sqlalchemy.sql import func
 from database import Base
-
-
-
-
-
 
 class User(Base):
     __tablename__ = "users"

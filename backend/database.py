@@ -3,7 +3,6 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 import os
 
-
 engine_link = os.environ.get("ENGINE_LINK")
 engine = create_engine(engine_link)
 

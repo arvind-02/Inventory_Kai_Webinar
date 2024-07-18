@@ -19,12 +19,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-
 @app.get("/")
 def read_root():
     return {"message": "Root"}
-
-
 
 @app.get("/orders", response_model=List[schemas.Order])
 def get_orders(skip: int = 0, limit: int = 100, db: Session = Depends(get_db), conn = Depends(get_engine)):

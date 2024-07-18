@@ -52,6 +52,3 @@ def get_recommended_product(product_id: int, connection: Connection):
 
     
 
-#from database import SessionLocal
-#with SessionLocal() as db, engine.connect() as connection:
-    #print(get_recommended_product(2251799813685253,  connection))

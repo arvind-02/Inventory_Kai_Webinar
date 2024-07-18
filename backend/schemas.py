@@ -17,8 +17,6 @@ class User(BaseModel):
     class Config:
         orm_mode = True
 
-
-
 class Product(BaseModel):
     id: int
     price: float
