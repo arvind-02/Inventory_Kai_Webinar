@@ -15,23 +15,6 @@ client = OpenAI(
     api_key = os.environ.get("OPENAI_API_KEY")
 )
 
-
-descriptions = {"Laptop": '''Discover the ultimate in portable computing with our sleek Laptop.
-                 Featuring a powerful processor and expansive storage, it's your perfect companion for work and play,
-                 whether you're at home or on the move.''',
-                "Smartphone": '''Revolutionize your connectivity with our cutting-edge Smartphone.
-                Boasting lightning-fast performance, a vibrant touchscreen, and stunning camera capabilities,
-                    it keeps you connected and entertained wherever you go. ''',
-                "Headphones": ''' Immerse yourself in superior sound quality with our premium Headphones. 
-                Featuring advanced noise-canceling technology and luxurious comfort, 
-                they're crafted for audiophiles and professionals seeking unparalleled audio experiences.''',
-                "Keyboard": '''Elevate your typing experience with our ergonomic Keyboard. 
-                Designed for precision and comfort, it offers customizable backlighting and responsive keys, 
-                making it ideal for gamers and typists alike. ''',
-                "Mouse": '''Navigate with precision using our high-performance Mouse. 
-                Engineered for ergonomic comfort and precision accuracy, it's essential for enhancing productivity and gaming enjoyment with every click. ''',
-                }
-
 def get_embedding(text, model="text-embedding-3-small"):
     text = text.replace("\n", " ")
     embedding = client.embeddings.create(input=[text], model=model).data[0].embedding
