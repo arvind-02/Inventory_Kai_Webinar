@@ -32,12 +32,10 @@ def populate_with_fake_data_new(db: Session, connection: Connection):
 
     product_ids = {}
     for product in products:
-        embedding = product[5]  # This is a list of floats
-        embedding_str = ','.join(map(str, embedding))
         result = connection.execute(
             text("""
                 INSERT INTO products (product_name, price, quantity, product_description, image_path, description_embedding)
-                VALUES (:product_name, :price, :quantity, :product_description, :image_path, JSON_ARRAY_PACK(:description_embedding))
+                VALUES (:product_name, :price, :quantity, :product_description, :image_path, :description_embedding)
             """),
             {
                 "product_name": product[0],
@@ -45,7 +43,7 @@ def populate_with_fake_data_new(db: Session, connection: Connection):
                 "quantity": product[2],
                 "product_description": product[3],
                 "image_path": product[4],
-                "description_embedding": product[5]  # Convert embedding to comma-separated string
+                "description_embedding": product[5]
             }
             
 

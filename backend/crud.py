@@ -17,7 +17,7 @@ def get_order(db: Session, order_id: int):
     return db.query(Order).filter(Order.id == order_id).first()
 
 def get_orders(db: Session, skip: int = 0, limit: int = 100):
-    print(type(db.query(Order).offset(skip).limit(limit).all()))
+    # print(type(db.query(Order).offset(skip).limit(limit).all()))
     return db.query(Order).offset(skip).limit(limit).all()
 
 '''
