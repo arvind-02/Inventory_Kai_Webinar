@@ -1,8 +1,5 @@
-from sqlalchemy import Column, Integer, String, DateTime, Float, Boolean, ForeignKey, BigInteger, Text, LargeBinary
-from sqlalchemy.orm import relationship, remote, foreign
-from sqlalchemy_singlestoredb import VECTOR
-from sqlalchemy.types import TypeEngine
-from sqlalchemy.sql import func
+from sqlalchemy import Column, Integer, String, DateTime, Float, BigInteger, Text
+from sqlalchemy.orm import relationship
 from database import Base
 
 class User(Base):

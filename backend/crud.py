@@ -1,11 +1,7 @@
 from sqlalchemy.orm import Session
 from sqlalchemy.engine import Connection
-from database import SessionLocal, engine
-import schemas
 from models import Order, Product, User
-import json
-
-from sqlalchemy import desc, text
+from sqlalchemy import text
 
 def get_user(db: Session, user_id: int):
     return db.query(User).filter(User.id == user_id).first()
@@ -17,18 +13,7 @@ def get_order(db: Session, order_id: int):
     return db.query(Order).filter(Order.id == order_id).first()
 
 def get_orders(db: Session, skip: int = 0, limit: int = 100):
-    # print(type(db.query(Order).offset(skip).limit(limit).all()))
     return db.query(Order).offset(skip).limit(limit).all()
-
-'''
-orders = get_orders(db)
-    for order in orders:
-            product= order.product
-            attributes = [attr for attr in dir(product) if not attr.startswith('_') and not callable(getattr(product, attr))]
-            for attr in attributes:
-                print(f"  {attr}: {getattr(product, attr)}")
-            #print(f"Order ID: {order.id}, User ID: {order.user_id}, Product ID: {order.product_id}, Quantity: {order.quantity}")
-'''
 
 def get_recommended_product(product_id: int, connection: Connection):
     query = text("""

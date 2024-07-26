@@ -11,6 +11,7 @@ import numpy as np
 import json
 from user_data import users
 from product_data import products
+
 client = OpenAI(
     api_key = os.environ.get("OPENAI_API_KEY")
 )
@@ -18,19 +19,14 @@ client = OpenAI(
 def get_embedding(text, model="text-embedding-3-small"):
     text = text.replace("\n", " ")
     embedding = client.embeddings.create(input=[text], model=model).data[0].embedding
-    #print(str(embedding))
     return json.dumps(embedding)
 
 
-def binary_to_vector(binary):
-    return np.frombuffer(binary, dtype=np.float32)
-
-
-def populate_with_fake_data_new(db: Session, connection: Connection):
+def populate_with_data(db: Session, connection: Connection):
     db.add_all(users)
     db.commit()
 
-    product_ids = {}
+    
     for product in products:
         result = connection.execute(
             text("""
@@ -48,14 +44,12 @@ def populate_with_fake_data_new(db: Session, connection: Connection):
             
 
         )
-        
+
+    product_ids = {}   
     result = connection.execute(text("SELECT id, product_name FROM products")).fetchall()
-    #print(result.fetchall())
-    #print(result)
+    
     for row in result:
        product_ids[row[1]] = row[0]
-    print([row for row in result])
-        
         
     connection.commit()
 
@@ -74,6 +68,5 @@ def populate_with_fake_data_new(db: Session, connection: Connection):
     db.add_all(orders)
     db.commit()
 
-# Use this function
 with SessionLocal() as db, engine.connect() as connection:
-    populate_with_fake_data_new(db, connection)
+    populate_with_data(db, connection)

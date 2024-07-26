@@ -1,5 +1,4 @@
 from database import engine, Base
-from models import User, Product, Order
 from sqlalchemy.engine import Connection
 from sqlalchemy import text
 

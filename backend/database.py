@@ -7,7 +7,6 @@ engine_link = os.environ.get("ENGINE_LINK")
 engine = create_engine(engine_link)
 
 SessionLocal = sessionmaker(bind=engine)
-
 Base = declarative_base()
 
 def get_db():
