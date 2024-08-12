@@ -1,6 +1,6 @@
 from openai import OpenAI
 import os
-import json
+
 
 client = OpenAI(
     api_key = os.environ.get("OPENAI_API_KEY")
@@ -9,7 +9,7 @@ client = OpenAI(
 def get_embedding(text, model="text-embedding-3-small"):
     text = text.replace("\n", " ")
     embedding = client.embeddings.create(input=[text], model=model).data[0].embedding
-    return json.dumps(embedding)
+    return embedding
 
 descriptions = {
     "Laptop": "A high-performance laptop suitable for all your computing needs. It features a sleek design and powerful hardware, making it perfect for both work and entertainment.",

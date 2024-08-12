@@ -1,27 +1,22 @@
-from sqlalchemy import create_engine
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker
+from pymongo import MongoClient
+from pymongo.database import Database
+from pymongo.collection import Collection
 import os
+from typing import Generator
 
-engine_link = os.environ.get("ENGINE_LINK")
-engine = create_engine(engine_link)
+mongo_link = os.getenv("MONGO_LINK")
+mongo_database = os.getenv("MONGO_DATABASE")
 
-SessionLocal = sessionmaker(bind=engine)
-Base = declarative_base()
 
 def get_db():
-    db = SessionLocal()
+    client = MongoClient(mongo_link)
+
     try:
+        db = client[mongo_database]
         yield db
     
     finally: 
-        db.close()
+        client.close()
 
-def get_engine():
-    conn = engine.connect()
-    try:
-        yield conn
-    
-    finally: 
-        conn.close()
+
     
