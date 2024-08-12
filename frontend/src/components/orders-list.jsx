@@ -5,6 +5,7 @@ import {useState} from 'react'
 
 export function OrdersList({ orders = [] }) {
   const [recommendations, setRecommendations] = useState({});
+  const [viewingEmail, setViewingEmail] = useState(null);
 
   const getRecommendation = async (userName, productId, orderId, productName, productDescription) => {
     if (recommendations[orderId]) {
@@ -19,6 +20,15 @@ export function OrdersList({ orders = [] }) {
       }
     }
   };
+
+  const openEmailModal = (email) => {
+    setViewingEmail(email);
+  };
+
+  const closeEmailModal = () => {
+    setViewingEmail(null);
+  };
+
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -58,19 +68,36 @@ export function OrdersList({ orders = [] }) {
               <img
                 src={recommendations[order._id].image_path}
                 alt={order.product_name}
-                className="w-full h-32 object-contain rounded-md"
+                className="w-full h-32 object-contain rounded-md mb-4"
               />
+
               <button
                 className="bg-blue-500 text-white px-4 py-2 rounded"
+                onClick={() => openEmailModal(recommendations[order._id].outreach_email)}
               >
-                Get Email
+                View Outreach Email
 
               </button>
-              <p className="text-gray-600 mb-2">
-                Email: {recommendations[order._id].outreach_email}
-              </p>
+              
             </div>
             
+          )}
+
+          {viewingEmail && (
+            <div className="fixed inset-0 bg-white bg-opacity-50 flex items-center justify-center z-50">
+              <div className="bg-white p-6 rounded-lg max-w-2xl w-full">
+                <h2 className="text-xl font-semibold mb-4">Outreach Email</h2>
+                <div className="bg-gray-100 p-4 rounded">
+                  <p>{viewingEmail}</p>
+                </div>
+                <button
+                  className="bg-red-500 text-white px-4 py-2 rounded mt-4"
+                  onClick={closeEmailModal}
+                >
+                  Close
+                </button>
+              </div>
+            </div>
           )}
         </div>
       ))}

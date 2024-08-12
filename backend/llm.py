@@ -29,7 +29,9 @@ class GPTEmailGenerator():
                  The name of the customer is {user_name}.
                  The name of the online store is Singlestore E-Commerce.
                  Please write a 4-5 sentence email where you reach out to this customer and recommend buying this new product.
-                 End the email with Best regards, Singlestore Ecommerce.'''}
+                 End the email with Best regards, Singlestore Ecommerce. 
+                 Please format this with the appropriate line breaks like in a normal email. 
+                 Format this email using `<br>` tags for line breaks.'''}
             ],
           temperature=0.5
         )
