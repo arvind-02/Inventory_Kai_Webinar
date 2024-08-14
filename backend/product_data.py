@@ -71,8 +71,6 @@ products = [
     ("Bracelet", 49.99, 200, descriptions["Bracelet"], "/images/bracelet.jpg", get_embedding(descriptions["Bracelet"])),
     ("Sunglasses", 79.99, 150, descriptions["Sunglasses"], "/images/sunglasses.jpg", get_embedding(descriptions["Sunglasses"])),
     ("Hat", 29.99, 200, descriptions["Hat"], "/images/hat.jpg", get_embedding(descriptions["Hat"])),
-    ("T-shirt", 19.99, 400, descriptions["T-shirt"], "/images/tshirt.jpg", get_embedding(descriptions["T-shirt"])),
-    ("Jeans", 49.99, 300, descriptions["Jeans"], "/images/jeans.jpg", get_embedding(descriptions["Jeans"])),
     ("Backpack", 39.99, 200, descriptions["Backpack"], "/images/backpack.jpg", get_embedding(descriptions["Backpack"])),
     ("Suitcase", 89.99, 150, descriptions["Suitcase"], "/images/suitcase.jpg", get_embedding(descriptions["Suitcase"])),
     ("Water Bottle", 14.99, 300, descriptions["Water Bottle"], "/images/waterbottle.jpg", get_embedding(descriptions["Water Bottle"])),
