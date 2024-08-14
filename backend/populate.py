@@ -104,6 +104,8 @@ def populate_with_data(db: Session, connection: Connection):
 
 '''
 
+
+
 client = MongoClient(mongo_link)
 db = client[mongo_database]
 populate_with_data(db)

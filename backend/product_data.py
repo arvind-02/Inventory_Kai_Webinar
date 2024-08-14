@@ -38,8 +38,6 @@ descriptions = {
     "Bracelet": "A stylish bracelet that adds a touch of elegance to any outfit. Made with high-quality materials.",
     "Sunglasses": "Chic sunglasses that offer UV protection and style. Perfect for sunny days and outdoor activities.",
     "Hat": "A fashionable hat that provides shade and complements any outfit. Ideal for both casual and formal occasions.",
-    "T-shirt": "A comfortable and versatile T-shirt made from soft cotton. Great for everyday wear and available in various colors.",
-    "Jeans": "Classic jeans with a modern fit. Durable and comfortable, suitable for any casual occasion.",
     "Backpack": "A spacious and durable backpack for school, work, or travel. Features multiple compartments and a comfortable design.",
     "Suitcase": "A lightweight and sturdy suitcase with ample storage. Perfect for all your travel needs, with smooth-rolling wheels.",
     "Water Bottle": "A reusable water bottle that keeps your drinks cold or hot for hours. Eco-friendly and perfect for staying hydrated on the go.",
