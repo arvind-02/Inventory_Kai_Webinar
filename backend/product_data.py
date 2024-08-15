@@ -1,9 +1,9 @@
 from openai import OpenAI
 import os
-
+from config import openai_key
 
 client = OpenAI(
-    api_key = os.environ.get("OPENAI_API_KEY")
+    api_key = openai_key
 ) 
 
 def get_embedding(text, model="text-embedding-3-small"):

@@ -88,7 +88,7 @@ export function OrdersList({ orders = [] }) {
               <div className="bg-white p-6 rounded-lg max-w-2xl w-full">
                 <h2 className="text-xl font-semibold mb-4">Outreach Email</h2>
                 <div className="bg-gray-100 p-4 rounded">
-                  <p>{viewingEmail}</p>
+                  <p dangerouslySetInnerHTML={{__html: viewingEmail}}></p>
                 </div>
                 <button
                   className="bg-red-500 text-white px-4 py-2 rounded mt-4"

@@ -6,9 +6,10 @@ from pymongo.database import Database
 from openai import OpenAI
 import os
 from llm import GPTEmailGenerator
+from config import openai_key
 
 client = OpenAI(
-    api_key = os.environ.get("OPENAI_API_KEY")
+    api_key = openai_key
 )
 
 
@@ -99,7 +100,7 @@ def get_recommended_product(product_id: str, db: Database):
     ]
 
     result = list(db.products.aggregate(pipeline))
-    print(result[0])
+    
     return result[0]
 
 

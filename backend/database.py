@@ -1,18 +1,12 @@
 from pymongo import MongoClient
-from pymongo.database import Database
-from pymongo.collection import Collection
-import os
-from typing import Generator
-
-mongo_link = os.getenv("MONGO_LINK")
-mongo_database = os.getenv("MONGO_DATABASE")
+from config import db_link, db_name
 
 
 def get_db():
-    client = MongoClient(mongo_link)
+    client = MongoClient(db_link)
 
     try:
-        db = client[mongo_database]
+        db = client[db_name]
         yield db
     
     finally: 

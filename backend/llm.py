@@ -1,6 +1,7 @@
 from openai import OpenAI
 from tenacity import retry, stop_after_attempt, wait_random_exponential
 import os
+from config import openai_key
 
 GPT4o_mini = 'gpt-4o-mini'
 
@@ -8,7 +9,7 @@ class GPTEmailGenerator():
     def __init__(self, model=GPT4o_mini):
         
         self.client = OpenAI(
-            api_key = os.environ.get('OPENAI_API_KEY')
+            api_key = openai_key
         )
         self.model = model
 
@@ -31,12 +32,13 @@ class GPTEmailGenerator():
                  Please write a 4-5 sentence email where you reach out to this customer and recommend buying this new product.
                  End the email with Best regards, Singlestore Ecommerce. 
                  Please format this with the appropriate line breaks like in a normal email. 
-                 Format this email using `<br>` tags for line breaks.'''}
+                 Format this email using `<br>` tags for line breaks. 
+                 Make sure to include breaks after the subject line before the start of the email body'''}
             ],
           temperature=0.5
         )
 
-
+        
         return response.choices[0].message.content
 
 
@@ -48,11 +50,3 @@ class GPTEmailGenerator():
         except Exception as e:
             print(e)
 
-'''
-model = GPTEmailGenerator()
-print(model.get_email("Laptop", 
-                      "Tablet", 
-                      "A high-performance laptop suitable for all your computing needs. It features a sleek design and powerful hardware, making it perfect for both work and entertainment.", 
-                      "A versatile tablet with a vibrant display and long battery life. Ideal for browsing, reading, and on-the-go productivity.",
-                      "Alice Johnson"))
-                      '''
