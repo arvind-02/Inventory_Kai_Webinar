@@ -1,5 +1,5 @@
 import { api } from "../api.js";
-import { OrdersList } from "../components/orders-list";
+import  OrdersList  from "../components/OrdersList";
 
 export default async function Home() {
   let orders = [];
