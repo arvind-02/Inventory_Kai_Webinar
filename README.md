@@ -11,7 +11,7 @@ To set up SingleStore Kai:
 2. Take note of the connection URL and the name of your database
 
 ## Set up App
-1. Clone the repository: git clone https://github.com/arvind-02/Inventory_Kai_Webinar.git
+1. Clone the repository: `git clone https://github.com/arvind-02/Inventory_Kai_Webinar.git`
    
 2. Navigate to the backend directory. Set up a .env file with the following environment variables:
    a. MONGO_LINK: the connection string for your mongo cluster
