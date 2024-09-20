@@ -1,7 +1,7 @@
 from pydantic import BaseModel, BeforeValidator, validator, Field
 from datetime import datetime
 from bson import ObjectId as BsonObjectId
-from typing import Any, Annotated, Optional
+from typing import Any, Annotated, Optional, List
 
 PyObjectId = Annotated[str, BeforeValidator(str)]
     
@@ -45,15 +45,42 @@ class Order(BaseModel):
         populate_by_name=True
         arbitrary_types_allowed=True 
     
-    
+class OrdersResponse(BaseModel):
+    orders: List[Order]
+    execution_time: float
     
 
 class RecommendedProduct(BaseModel):
-    id: Optional[PyObjectId] = Field(alias="_id", default=None)
+    id: str
     product_name: str
     product_description: str
     image_path: str
     similarity_score: float
     outreach_email: str
+    execution_time: float
+    
+
+
+class UserHistory(BaseModel):
+    orders_month: int
+    quantity_month: int
+    spent_month: float
+
+    orders_year: int
+    quantity_year: int
+    spent_year: float
+    execution_time: float
+
+class ProductHistory(BaseModel):
+    orders_month: int
+    quantity_month: int
+    spent_month: float
+
+    orders_year: int
+    quantity_year: int
+    spent_year: float
+    execution_time: float
+
+   
 
     
