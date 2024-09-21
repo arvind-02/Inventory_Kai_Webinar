@@ -55,3 +55,7 @@ Navigate to the backend directory and run: python main.py. You can view the back
 ## Launch frontend
 
 Navigate to the frontend directory. Run: `npm run build` and then: `npm start` to launch the app. If you want to run the app in development mode, run: `npm run dev`. You can view your app at localhost:3000 !
+
+## Switching between Kai and Mongo
+
+Navigate to the database.py file within the backend folder. If you want to use mongo, replace kai_db_link on line 7 with mongo_db_link. Replace kai_db_name with mongo_db_name
