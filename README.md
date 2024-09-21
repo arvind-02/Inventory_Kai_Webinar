@@ -20,7 +20,7 @@ To set up SingleStore Kai:
    d. KAI_LINK: the connection string for your kai cluster
    e. KAI_DATABASE: Whatever you decided to name your Kai database, we suggested "Inventory"
 
-3. Set up a virtual environment: `python -m venv venv`. Activate it by running `source venv/bin/activate`.
+3. Set up a virtual environment: `python3.11 -m venv venv`. Activate it by running `source venv/bin/activate`. Make sure to use Python 3.11. With Python 3.9 or other versions lower than 3.11, you will run into issues when trying to use Kai.
    
 4. Navigate to the backend directory. Run `pip install -r requirements.txt`
 
